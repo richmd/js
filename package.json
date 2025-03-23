@@ -1,6 +1,6 @@
 {
   "name": "@richmd/js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "It is Converting Html package of Richmd.",
   "exports": {
     ".": {
