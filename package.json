@@ -1,0 +1,67 @@
+{
+  "name": "@richmd/js",
+  "version": "0.0.1",
+  "description": "It is Converting Html package of Richmd.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./dist/richmd.css": {
+      "import": "./dist/richmd.css",
+      "require": "./dist/richmd.css"
+    },
+    "./dist/index.d.ts": {
+      "import": "./dist/index.d.ts",
+      "require": "./dist/index.d.ts"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist",
+    "./types"
+  ],
+  "volta": {
+    "node": "23.10.0"
+  },
+  "scripts": {
+    "build": "vite build && tsc",
+    "prepare": "pnpm build"
+  },
+  "keywords": [
+    "markdown",
+    "frontend",
+    "richmd",
+    "katex",
+    "html",
+    "react",
+    "vue"
+  ],
+  "author": "nappa <masa.yanagawa721@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richmd/js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/richmd/js.git/issues"
+  },
+  "homepage": "https://github.com/richmd/js.git",
+  "license": "MIT",
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "@types/katex": "^0.16.7",
+    "vite": "^6.2.2"
+  },
+  "dependencies": {
+    "@richmd/core": "^3.0.1",
+    "highlight.js": "^11.11.1",
+    "katex": "^0.16.21",
+    "typescript": "^5.8.2"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
