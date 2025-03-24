@@ -1,6 +1,6 @@
 {
   "name": "@richmd/js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "It is Converting Html package of Richmd.",
   "exports": {
     ".": {
@@ -54,7 +54,7 @@
     "vite": "^6.2.2"
   },
   "dependencies": {
-    "@richmd/core": "^3.0.1",
+    "@richmd/core": "^3.1.1",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.21",
     "typescript": "^5.8.2"
