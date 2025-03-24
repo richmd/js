@@ -1,5 +1,9 @@
 # @richmd/js
 
+![NPM License](https://img.shields.io/npm/l/%40richmd%2Fjs)
+![NPM Version](https://img.shields.io/npm/v/%40richmd%2Fjs)
+![NPM Downloads](https://img.shields.io/npm/dw/%40richmd%2Fjs)
+
 A JavaScript library for converting Markdown to HTML with rich features. This package is part of the Richmd ecosystem, providing a simple way to render Markdown content as HTML in JavaScript applications.
 
 ## Features
