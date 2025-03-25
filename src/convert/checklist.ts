@@ -4,51 +4,51 @@ import { changeHtml } from "./changeHtml";
 export const checklist = (values: List[]) => {
   let prev: List | null = null;
   let clist = '<ul class="ul checklist">\n';
-  for (const key in values) {
-    if (prev && values[key].level > prev.level) {
+  for (const value of values) {
+    if (prev && value.level > prev.level) {
       clist += '<ul class="ul">\n';
-    } else if (prev && values[key].level < prev.level) {
-      for (let i = 0; i < prev.level - values[key].level; i += 1) {
+    } else if (prev && value.level < prev.level) {
+      for (let i = 0; i < prev.level - value.level; i += 1) {
         clist += "</ul>\n";
       }
     }
     clist += '<li class="li checklist">';
-    if (values[key].checked) {
+    if (value.checked) {
       clist += '<input type="checkbox" checked="checked">';
     } else {
       clist += '<input type="checkbox">';
     }
-    for (const i in values[key].values) {
-      switch (values[key].values[i].name) {
+    for (const data of value.values) {
+      switch (data.name) {
         case "em":
-          clist += `<strong>${values[key].values[i].value}</strong>`;
+          clist += `<strong>${data.value}</strong>`;
           break;
         case "strikethrough":
-          clist += `<del>${values[key].values[i].value}</del>`;
+          clist += `<del>${data.value}</del>`;
           break;
         case "italic":
-          clist += `<em>${values[key].values[i].value}</em>`;
+          clist += `<em>${data.value}</em>`;
           break;
         case "emitalic":
-          clist += `<em><strong>${values[key].values[i].value}</strong></em>`;
+          clist += `<em><strong>${data.value}</strong></em>`;
           break;
         case "link": {
-          const path = changeHtml(values[key].values[i].href);
-          clist += `<a href="${path}" class="a">${values[key].values[i].title}</a>`;
+          const path = changeHtml(data.href);
+          clist += `<a href="${path}" class="a">${data.title}</a>`;
           break;
         }
         case "image":
-          clist += `<img src="${values[key].values[i].src}" alt="${values[key].values[i].alt}" class="img" />`;
+          clist += `<img src="${data.src}" alt="${data.alt}" class="img" />`;
           break;
         case "video":
-          clist += `<video controls preload="none" class="video">\n<source src="${values[key].values[i].src}" />\nSorry, your browser doesn't support embedded videos.\n</video>`;
+          clist += `<video controls preload="none" class="video">\n<source src="${data.src}" />\nSorry, your browser doesn't support embedded videos.\n</video>`;
           break;
         case "code":
-          clist += `<code class="inline-code">${values[key].values[i].value}</code>`;
+          clist += `<code class="inline-code">${data.value}</code>`;
           break;
         case "katex": {
           const html = Katex.renderToString(
-            String.raw`\displaystyle ${values[key].values[i].value}`,
+            String.raw`\displaystyle ${data.value}`,
             {
               throwOnError: false,
             },
@@ -57,17 +57,17 @@ export const checklist = (values: List[]) => {
           break;
         }
         default: {
-          if (values[key].values[i].value === "\n") {
+          if (data.value === "\n") {
             clist += "<br>";
           } else {
-            clist += values[key].values[i].value;
+            clist += data.value;
           }
           break;
         }
       }
     }
     clist += "</li>\n";
-    prev = values[key];
+    prev = value;
   }
   clist += "</ul>\n";
   return clist;
