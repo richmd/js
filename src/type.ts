@@ -15,6 +15,8 @@ interface Convert {
   headings: string[];
   rows: Convert[][][];
   summary: string;
+  mode: string;
+  layout: string;
 }
 interface List {
   level: number;

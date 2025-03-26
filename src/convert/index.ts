@@ -14,6 +14,7 @@ import { table } from "./table";
 import { colorBlock } from "./colorBlock";
 import { startDetails, endDetails } from "./details";
 import { startTag, endTag } from "./tag";
+import { startSlide, endSlide } from "./slide";
 
 export const convert = {
   heading,
@@ -32,4 +33,6 @@ export const convert = {
   endDetails,
   startTag,
   endTag,
+  startSlide,
+  endSlide,
 };
