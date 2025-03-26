@@ -1,7 +1,6 @@
 import { convert } from "./convert/index";
 import "./type";
 import "../styles/richmd.css";
-import { render } from "katex";
 
 export const convertMdTree = (tree: Tree) => {
   const mdTree: object[] & Convert[] = tree.ast;
@@ -86,7 +85,7 @@ export const convertMdTree = (tree: Tree) => {
         htmlValue += convert.endDetails();
         break;
       case "startSlide":
-        htmlValue += convert.startSlide(mdTree[line].layout, mdTree[line].mode);
+        htmlValue += convert.startSlide(mdTree[line].layout, mdTree[line].mode, mdTree[line].theme, slideValue.length);
         break;
       case "endSlide":
         if (listValue.length !== 0) {
@@ -153,13 +152,15 @@ export const convertMdTree = (tree: Tree) => {
   if (pageMode.mode === "slide") {
     const value = slideValue.map((slide) => slide).join("\n");
     return {
-      html: `<div class='richmd_slide'>\n${value}\n</div>`,
-      slideData: slideValue,
+      html: `<div class="richmd-slide">\n${value}\n</div>`,
+      slide: slideValue,
+      mode: "slide",
     };
   }
 
   return {
-    html: `<div class='richmd'>\n${htmlValue}\n</div>`,
-    slideData: [],
+    html: `<div class="richmd">\n${htmlValue}\n</div>`,
+    slide: [],
+    mode: "page",
   };
 };
