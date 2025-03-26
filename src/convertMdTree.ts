@@ -1,12 +1,15 @@
 import { convert } from "./convert/index";
 import "./type";
 import "../styles/richmd.css";
+import { render } from "katex";
 
 export const convertMdTree = (tree: Tree) => {
   const mdTree: object[] & Convert[] = tree.ast;
+  const pageMode = mdTree.shift() as Convert;
   let htmlValue = "";
   let prev;
   let bqValue: Convert[][] = [];
+  let slideValue: string[] = [];
   let listValue: List[] = [];
   let orderListValue: List[] = [];
   let checkListValue: List[] = [];
@@ -82,6 +85,28 @@ export const convertMdTree = (tree: Tree) => {
       case "endDetails":
         htmlValue += convert.endDetails();
         break;
+      case "startSlide":
+        htmlValue += convert.startSlide(mdTree[line].layout, mdTree[line].mode);
+        break;
+      case "endSlide":
+        if (listValue.length !== 0) {
+          htmlValue += convert.ulist(listValue);
+          listValue = [];
+        } else if (orderListValue.length !== 0) {
+          htmlValue += convert.olist(orderListValue);
+          orderListValue = [];
+        } else if (checkListValue.length !== 0) {
+          htmlValue += convert.checklist(checkListValue);
+          checkListValue = [];
+        } else if (bqValue.length !== 0) {
+          htmlValue += convert.blockquote(bqValue);
+          bqValue = [];
+        }
+        htmlValue += convert.endSlide();
+        slideValue.push(htmlValue);
+        prev = mdTree[line];
+        htmlValue = "";
+        break;
       case "startTag":
         htmlValue += convert.startTag(mdTree[line]);
         break;
@@ -125,5 +150,16 @@ export const convertMdTree = (tree: Tree) => {
     }
   }
 
-  return`<div class='richmd'>\n${htmlValue}\n</div>`;
+  if (pageMode.mode === "slide") {
+    const value = slideValue.map((slide) => slide).join("\n");
+    return {
+      html: `<div class='richmd_slide'>\n${value}\n</div>`,
+      slideData: slideValue,
+    };
+  }
+
+  return {
+    html: `<div class='richmd'>\n${htmlValue}\n</div>`,
+    slideData: [],
+  };
 };
