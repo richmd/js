@@ -46,7 +46,7 @@ import '@richmd/js/dist/richmd.css'; // Import the styles
 
 // Convert Markdown to HTML
 const markdown = '# Hello World\n\nThis is a **bold** text.';
-const html = richmd(markdown);
+const { html } = richmd(markdown);
 
 // Use the HTML in your application
 document.getElementById('content').innerHTML = html;
