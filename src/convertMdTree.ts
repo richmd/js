@@ -110,6 +110,19 @@ export const convertMdTree = (tree: Tree) => {
         htmlValue += convert.startTag(mdTree[line]);
         break;
       case "endTag":
+        if (listValue.length !== 0) {
+          htmlValue += convert.ulist(listValue);
+          listValue = [];
+        } else if (orderListValue.length !== 0) {
+          htmlValue += convert.olist(orderListValue);
+          orderListValue = [];
+        } else if (checkListValue.length !== 0) {
+          htmlValue += convert.checklist(checkListValue);
+          checkListValue = [];
+        } else if (bqValue.length !== 0) {
+          htmlValue += convert.blockquote(bqValue);
+          bqValue = [];
+        }
         htmlValue += convert.endTag(mdTree[line]);
         prev = mdTree[line];
         break;
