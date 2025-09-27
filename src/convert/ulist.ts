@@ -7,7 +7,7 @@ export const ulist = (values: List[]) => {
   for (const key in values) {
     if (prev && values[key].level > prev.level) {
       list += '<ul class="ul">\n';
-    } else if (prev && values[key].level < prev.level) {
+    } else if (prev && values[key].level <= prev.level) {
       for (let i = 0; i < prev.level - values[key].level; i += 1) {
         list += "</ul>\n";
       }
