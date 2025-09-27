@@ -15,12 +15,6 @@ export const ulist = (values: List[]) => {
       }
     }
 
-    if (prev && key === values.length - 1) {
-      for (let j = 0; j < prev.level; j += 1) {
-        list += "</ul>\n";
-      }
-    }
-
     list += '<li class="li">';
     for (const i in values[key].values) {
       switch (values[key].values[i].name) {
@@ -71,6 +65,12 @@ export const ulist = (values: List[]) => {
     }
     list += "</li>\n";
     prev = values[key];
+
+    if (prev && key === values.length - 1) {
+      for (let j = 0; j < prev.level; j += 1) {
+        list += "</ul>\n";
+      }
+    }
   }
   list += "</ul>\n";
   return list;
