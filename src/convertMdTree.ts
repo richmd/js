@@ -149,9 +149,6 @@ export const convertMdTree = (tree: Tree) => {
         } else if (prev && prev.name === "paragraph") {
           htmlValue += convert.br();
           prev = mdTree[line];
-        } else if (prev && prev.name === "heading") {
-          htmlValue += convert.br();
-          prev = mdTree[line];
         } else {
           htmlValue += convert.br();
           prev = mdTree[line];
