@@ -72,6 +72,5 @@ export const ulist = (values: List[]) => {
       }
     }
   }
-  list += "</ul>\n";
   return list;
 };

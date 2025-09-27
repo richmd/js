@@ -16,7 +16,7 @@ export const olist = (values: List[]) => {
     return "1";
   };
   let orderList = '<ol class="ol" type="1">\n';
-  for (const key in values) {
+  for (let key = 0; key < values.length; key += 1) {
     if (prev && values[key].level > prev.level) {
       orderList += `<ol class="ol" type="${type(values[key].level)}">\n`;
     } else if (prev && values[key].level < prev.level) {
@@ -74,7 +74,12 @@ export const olist = (values: List[]) => {
     }
     orderList += "</li>\n";
     prev = values[key];
+
+    if (prev && key === values.length - 1) {
+      for (let j = 0; j < prev.level; j += 1) {
+        orderList += "</ol>\n";
+      }
+    }
   }
-  orderList += "</ol>\n";
   return orderList;
 };

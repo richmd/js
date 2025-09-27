@@ -4,7 +4,7 @@ import { changeHtml } from "./changeHtml";
 export const checklist = (values: List[]) => {
   let prev: List | null = null;
   let clist = '<ul class="ul checklist">\n';
-  for (const key in values) {
+  for (let key = 0; key < values.length; key += 1) {
     if (prev && values[key].level > prev.level) {
       clist += '<ul class="ul">\n';
     } else if (prev && values[key].level < prev.level) {
@@ -68,7 +68,12 @@ export const checklist = (values: List[]) => {
     }
     clist += "</li>\n";
     prev = values[key];
+
+    if (prev && key === values.length - 1) {
+      for (let j = 0; j < prev.level; j += 1) {
+        clist += "</ul>\n";
+      }
+    }
   }
-  clist += "</ul>\n";
   return clist;
 };
