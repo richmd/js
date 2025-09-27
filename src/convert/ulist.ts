@@ -4,13 +4,19 @@ import { changeHtml } from "./changeHtml";
 export const ulist = (values: List[]) => {
   let prev: List | null = null;
   let list = '<ul class="ul">\n';
-  for (const key in values) {
+  for (let key = 0; key < values.length; key += 1) {
     if (prev && values[key].level > prev.level) {
       list += '<ul class="ul">\n';
-    } 
-    
+    }
+
     if (prev && values[key].level < prev.level) {
       for (let i = 0; i < prev.level - values[key].level; i += 1) {
+        list += "</ul>\n";
+      }
+    }
+
+    if (prev && key === values.length - 1) {
+      for (let j = 0; j < prev.level; j += 1) {
         list += "</ul>\n";
       }
     }
