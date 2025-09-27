@@ -7,11 +7,14 @@ export const ulist = (values: List[]) => {
   for (const key in values) {
     if (prev && values[key].level > prev.level) {
       list += '<ul class="ul">\n';
-    } else if (prev && values[key].level <= prev.level) {
+    } 
+    
+    if (prev && values[key].level < prev.level) {
       for (let i = 0; i < prev.level - values[key].level; i += 1) {
         list += "</ul>\n";
       }
     }
+
     list += '<li class="li">';
     for (const i in values[key].values) {
       switch (values[key].values[i].name) {
