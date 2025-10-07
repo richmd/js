@@ -1,5 +1,6 @@
 import * as Katex from "katex";
 import { changeHtml } from "./changeHtml";
+import * as Emoji from "node-emoji";
 
 export const blockquote = (values: Convert[][]) => {
   let bq = '<blockquote class="blockquote">\n';
@@ -40,6 +41,16 @@ export const blockquote = (values: Convert[][]) => {
           });
           text += html;
           break;
+        }
+        case "emoji": {
+          const emoji = Emoji.get(data[val].value);
+          if (emoji) {
+            text += emoji;
+            break;
+          } else {
+            text += data[val].value;
+            break;
+          }
         }
         default: {
           if (data[val].value.match(/\n/)) {

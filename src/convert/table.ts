@@ -1,5 +1,6 @@
 import * as Katex from "katex";
 import { changeHtml } from "./changeHtml";
+import * as Emoji from "node-emoji";
 
 export const table = (data: Convert) => {
   let tableblock = '<table class="table">\n';
@@ -47,6 +48,16 @@ export const table = (data: Convert) => {
             });
             tableblock += html;
             break;
+          }
+          case "emoji": {
+            const emoji = Emoji.get(column[key].value);
+            if (emoji) {
+              tableblock += emoji;
+              break;
+            } else {
+              tableblock += column[key].value;
+              break;
+            }
           }
           default:
             tableblock += column[key].value;
