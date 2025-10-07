@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@richmd/core':
-        specifier: 5.0.0-rc.0
-        version: 5.0.0-rc.0
+        specifier: 5.0.0-rc.1
+        version: 5.0.0-rc.1
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
@@ -186,8 +186,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@richmd/core@5.0.0-rc.0':
-    resolution: {integrity: sha512-lUpEIzF2nhjUbhIWKTpn+4uIfYaE5Xu9zq2UCnRKGP31xTtKR3IQTRI1breZz4P3iWaUyk6AjG49d7xvtPksNg==}
+  '@richmd/core@5.0.0-rc.1':
+    resolution: {integrity: sha512-gB2qxJiZ+/bMbsHukN1IatFbFUfE5bcA0/O9NJDKjiouCpUG6IdKzCdrdJew7rj/EpMo/MG+2JEc9b+4Gg620w==}
 
   '@rollup/rollup-android-arm-eabi@4.36.0':
     resolution: {integrity: sha512-jgrXjjcEwN6XpZXL0HUeOVGfjXhPyxAbbhD0BlXUB+abTOpbPiN5Wb3kOT7yb+uEtATNYF5x5gIfwutmuBA26w==}
@@ -587,7 +587,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.1':
     optional: true
 
-  '@richmd/core@5.0.0-rc.0':
+  '@richmd/core@5.0.0-rc.1':
     dependencies:
       highlight.js: 11.11.1
       katex: 0.16.21
