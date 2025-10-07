@@ -1,4 +1,5 @@
 import { changeHtml } from "./changeHtml";
+import * as Emoji from "node-emoji";
 
 export const colorBlock = (datas: Convert) => {
   let text = `<div class="message message-${datas.style}"><div class="message-icon-${datas.style}"></div>`;
@@ -33,6 +34,16 @@ export const colorBlock = (datas: Convert) => {
       case "code":
         text += `<code class="inline-code">${data[key].value}</code>`;
         break;
+      case "emoji": {
+        const emoji = Emoji.get(data[key].value);
+        if (emoji) {
+          text += emoji;
+          break;
+        } else {
+          text += data[key].value;
+          break;
+        }
+      }
       default:
         if (data[key].value === "\n") {
           text += "<br>";

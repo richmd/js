@@ -1,5 +1,6 @@
 import * as Katex from "katex";
 import { changeHtml } from "./changeHtml";
+import * as Emoji from "node-emoji";
 
 export const paragraph = (values: Convert[]) => {
   let text = '<span class="span">';
@@ -37,6 +38,16 @@ export const paragraph = (values: Convert[]) => {
         });
         text += html;
         break;
+      }
+      case "emoji": {
+        const emoji = Emoji.get(values[key].value);
+        if (emoji) {
+          text += emoji;
+          break;
+        } else {
+          text += values[key].value;
+          break;
+        }
       }
       default:
         if (values[key].value === "\n") {

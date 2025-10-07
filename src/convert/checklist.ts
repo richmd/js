@@ -1,5 +1,6 @@
 import * as Katex from "katex";
 import { changeHtml } from "./changeHtml";
+import * as Emoji from "node-emoji";
 
 export const checklist = (values: List[]) => {
   let prev: List | null = null;
@@ -55,6 +56,16 @@ export const checklist = (values: List[]) => {
           );
           clist += html;
           break;
+        }
+        case "emoji": {
+          const emoji = Emoji.get(values[key].values[i].value);
+          if (emoji) {
+            clist += emoji;
+            break;
+          } else {
+            clist += values[key].values[i].value;
+            break;
+          }
         }
         default: {
           if (values[key].values[i].value === "\n") {
